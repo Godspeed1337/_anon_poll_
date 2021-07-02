@@ -1,2 +1,2 @@
-# _anon_poll_
+# Анонимные голосования
 Summer practice

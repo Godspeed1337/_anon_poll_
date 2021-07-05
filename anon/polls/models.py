@@ -11,7 +11,7 @@ class Turnout(models.Model):
     profile_id = models.ForeignKey(Profile, on_delete=models.CASCADE)
 
 class Event(models.Model):
-    date = models.DateTimeField('Дата и время проведения совета')
+    date = models.DateTimeField('Дата и время проведения заседания')
     open_bool = models.BooleanField('Заседание открыто?')
 
 class Question(models.Model):

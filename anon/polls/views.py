@@ -12,5 +12,5 @@ def polls(request):
     return HttpResponse("Hello, world. You're at the polls")
 
 @login_required
-def questions(request)
-    pass
+def questions(request, event_id):
+    return HttpResponse(f'Hello, this is page of {event_id} event')

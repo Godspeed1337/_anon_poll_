@@ -6,5 +6,7 @@ from . import views
 urlpatterns = [
     path('', views.index, name='index'),
     path('polls/', views.polls),
-    path('login/', views2.LoginView.as_view(), name='login'),
+    #todo: доделать авторизацию
+    path('login/', views2.TemplateView, name='login'),
+    path('polls/<int:event_id>', views.questions),
 ]

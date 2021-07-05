@@ -10,3 +10,7 @@ def index(request):
 @login_required
 def polls(request):
     return HttpResponse("Hello, world. You're at the polls")
+
+@login_required
+def questions(request)
+    pass

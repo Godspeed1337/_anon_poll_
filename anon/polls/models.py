@@ -15,6 +15,9 @@ class Event(models.Model):
     open_bool = models.BooleanField('Заседание открыто?')
  #   turnout_id = models.ForeignKey(Turnout, on_delete=models.CASCADE)
 
+    def __str__(self):
+        return f'{self.date}'
+
 class Question(models.Model):
     event_id = models.ForeignKey(Event, on_delete=models.CASCADE)
     text = models.CharField(max_length=110)
@@ -22,6 +25,6 @@ class Question(models.Model):
 
 class Choise(models.Model):
     question_id = models.ForeignKey(Question, on_delete=models.DO_NOTHING)
-    za = models.BooleanField
-    protiv = models.BooleanField
-    abstained = models.BooleanField
+    za = models.IntegerField(default=0)
+    protiv = models.IntegerField(default=0)
+    abstained = models.IntegerField(default=0)

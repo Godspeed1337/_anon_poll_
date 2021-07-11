@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+
+	$(".label input").on("click", function() {
+
+		$(".label input").removeAttr("checked"); // Снимаем чекбокс со всей группы
+		$(this).prop("checked", true); // Оставляем выбранный чекбокс
+
+	});
+
+    </script>
+</head>
+<body>
+    <div class="group">
+        <label>
+            <input type="checkbox" name="test" value="1">
+        </label> - 1<br>
+        <label>
+            <input type="checkbox" name="test" value="2">
+        </label> - 2<br>
+        <label>
+            <input type="checkbox" name="test" value="3">
+        </label> - 3<br>
+        <label>
+            <input type="checkbox" name="test" value="4">
+        </label> - 4
+    </div>
+
+
+</body>
+</html>

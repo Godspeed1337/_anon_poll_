@@ -8,4 +8,6 @@ urlpatterns = [
     #todo: доделать авторизацию
     path('accounts/', include('django.contrib.auth.urls')),
     path('polls/<int:event_id>', views.questions),
+    path('accounts/logout', views.logout),
+    path('polls/<int:event_id>/results', views.results),
 ]

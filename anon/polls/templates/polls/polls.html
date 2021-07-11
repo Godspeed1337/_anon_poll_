@@ -1,0 +1,19 @@
+{% extends 'polls/base.html' %}
+
+{% block title %}Заседания{% endblock %}
+
+{% block content %}
+    <h1 align="center">Заседания</h1>
+
+    {% for i in events %}
+    <form action="/polls/{{ i.id }}">
+        <p align="center">
+            <button class="button"><b>{{ i.date }}</b></button>
+        </p>
+    </form>
+    {% endfor %}
+    <div style="position: absolute; top: 5px; right: 5px; width: 200px; text-align:right; text">
+    {{ request.user.username  }}, {{ group }}
+    <a href="/accounts/logout">Выйти</a>
+    </div>
+{% endblock %}

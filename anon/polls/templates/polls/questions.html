@@ -1,0 +1,42 @@
+{% extends 'polls/base.html' %}
+
+{% block title %}Вопросы{% endblock %}
+
+{% block content %}
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <h1 align="center">Вопросы</h1>
+    <form method="POST">
+    {% csrf_token %}
+    <h2 align="center">
+        {% for question in questionslist %}
+        {{ question.text }} <br />
+            <label class="container">
+                <input type="checkbox" name="{{ question.id }}" value="za">За
+                <span class="checkmark"></span>
+            </label>
+
+            <label class="container">
+                <input type="checkbox" name="{{ question.id }}" value="protiv">Против
+                <span class="checkmark"></span>
+            </label>
+
+            <label class="container">
+                <input type="checkbox" name="{{ question.id }}" value="voz  ">Воздержусь
+                <span class="checkmark"></span>
+            </label>
+             <br />
+
+
+        {% endfor %}
+    <input type="submit" value="Отправить">
+    </h2>
+    </form>
+    <script>
+
+        $('input[type="checkbox"]').on('change', function() {
+            $('input[name="' + this.name + '"]').not(this).prop('checked', false);
+        });
+
+    </script>
+{% endblock %}

@@ -3,6 +3,14 @@
 {% block title %}Результаты заседания{% endblock %}
 
 {% block content %}
-
+    <h1 align="center">Результаты заседания от {{ event.date }}</h1>
+    <h2 align="center">
+            {% for question in questionlist %}
+            {{ question.text }} <br/>
+            За: {{ question.choise_id.za }}
+            Против: {{ question.choise_id.protiv }}
+            Воздержался: {{ question.choise_id.abstained }}
+            <br/>
+            {% endfor %}
 
 {% endblock %}

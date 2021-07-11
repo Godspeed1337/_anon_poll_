@@ -63,6 +63,10 @@ def logout(request):
     return redirect("/")
 
 @login_required
-def results(reqeust):
+def results(reqeust, event_id):
+    context = { 'event' : Event.objects.get(pk=event_id),
+                'questionlist' : Question.objects.filter(event_id=event_id),
+    }
+    return render(reqeust, 'polls/results.html', context)
 
 

@@ -21,7 +21,6 @@ class Event(models.Model):
 class Question(models.Model):
     event_id = models.ForeignKey(Event, on_delete=models.CASCADE)
     text = models.CharField(max_length=110)
-    choise_id = models.ForeignKey('Choise', on_delete=models.CASCADE)
 
 class Choise(models.Model):
     question_id = models.ForeignKey(Question, on_delete=models.DO_NOTHING)

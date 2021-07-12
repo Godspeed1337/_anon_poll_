@@ -73,7 +73,7 @@ def results(reqeust, event_id):
         return HttpResponse('Заседание еще не закрыто')
     else:
         context = { 'event' : event,
-                'questionlist' : Question.objects.filter(event_id=event_id),
+                    'choises' : Choise.objects.filter(question_id__event_id=event_id),
         }
         return render(reqeust, 'polls/results.html', context)
 

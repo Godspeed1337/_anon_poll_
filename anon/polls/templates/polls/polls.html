@@ -6,11 +6,18 @@
     <h1 align="center">Заседания</h1>
 
     {% for i in events %}
-    <form action="/polls/{{ i.id }}">
-        <p align="center">
-            <button class="button"><b>{{ i.date }}</b></button>
-        </p>
-    </form>
+        <h2 align="center">Заседание от {{ i.date }}
+        <form action="/polls/{{ i.id }}">
+            <p align="center">
+                <button class="button"><b>Вопросы</b></button>
+            </p>
+        </form>
+        <form action="/polls/{{ i.id }}/results">
+            <p align="center">
+                <button class="button"><b>Результаты</b></button>
+            </p>
+        </form>
+        </h2>
     {% endfor %}
     <div style="position: absolute; top: 5px; right: 5px; width: 200px; text-align:right; text">
     {{ request.user.username  }}, {{ group }}

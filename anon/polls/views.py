@@ -40,21 +40,25 @@ def questions(request, event_id):
         p.save()
         return redirect("/")
     else:
-        questionslist = Question.objects.filter(event_id= event_id)
-        if Choise.objects.filter(question_id__event_id=event_id).exists():
-            context = {'choises' : Choise.objects.filter(question_id__event_id=event_id),
-                       'questionslist' : questionslist,
-                        'event' : event,
-                       }
+
+        if not(Turnout.objects.filter(event_id=event.pk, profile_id=Profile.objects.get(user_id=request.user.pk))).exists():
+            questionslist = Question.objects.filter(event_id= event_id)
+            if Choise.objects.filter(question_id__event_id=event_id).exists():
+                context = {'choises' : Choise.objects.filter(question_id__event_id=event_id),
+                           'questionslist' : questionslist,
+                            'event' : event,
+                           }
+            else:
+                for i in range(len(questionslist)):
+                    p = Choise(question_id=questionslist[i])
+                    p.save()
+                context = {'choises': Choise.objects.filter(question_id__event_id=event_id),
+                           'questionslist': questionslist,
+                           'event': event,
+                           }
+            return render(request, 'polls/questions.html', context)
         else:
-            for i in range(len(questionslist)):
-                p = Choise(question_id=questionslist[i])
-                p.save()
-            context = {'choises': Choise.objects.filter(question_id__event_id=event_id),
-                       'questionslist': questionslist,
-                       'event': event,
-                       }
-        return render(request, 'polls/questions.html', context)
+            return HttpResponse('Вы уже участвовали')
 
 @login_required
 def logout(request):
@@ -64,9 +68,13 @@ def logout(request):
 
 @login_required
 def results(reqeust, event_id):
-    context = { 'event' : Event.objects.get(pk=event_id),
+    event = Event.objects.get(pk=event_id)
+    if event.open_bool:
+        return HttpResponse('Заседание еще не закрыто')
+    else:
+        context = { 'event' : event,
                 'questionlist' : Question.objects.filter(event_id=event_id),
-    }
-    return render(reqeust, 'polls/results.html', context)
+        }
+        return render(reqeust, 'polls/results.html', context)
 
 
